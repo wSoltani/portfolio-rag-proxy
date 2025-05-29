@@ -7,6 +7,7 @@ describe('Portfolio RAG Proxy Worker', () => {
       autorag: vi.fn().mockReturnThis(),
       aiSearch: vi.fn(),
     },
+    ALLOWED_ORIGIN: 'https://wsoltani.com',
   };
 
   // Mock the AI binding
@@ -41,7 +42,7 @@ describe('Portfolio RAG Proxy Worker', () => {
     const request = new Request('http://localhost', { method: 'OPTIONS' });
     const response = await worker.fetch(request, mockEnv as any, {} as any);
     expect(response.status).toBe(200);
-    expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
+    expect(response.headers.get('Access-Control-Allow-Origin')).toBe('https://wsoltani.com');
   });
 
   it('should return 400 for missing query', async () => {

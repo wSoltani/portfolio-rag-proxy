@@ -21,13 +21,15 @@ export interface Env {
       }) => Promise<{ body: ReadableStream } | any>;
     };
   };
+  // Environment variables
+  ALLOWED_ORIGIN: string;
 }
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     // Set CORS headers to allow requests from the portfolio frontend
     const corsHeaders = {
-      'Access-Control-Allow-Origin': '*', // In production, replace with your actual domain
+      'Access-Control-Allow-Origin': env.ALLOWED_ORIGIN || 'https://wsoltani.com',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };

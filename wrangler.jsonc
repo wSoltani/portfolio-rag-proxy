@@ -12,6 +12,9 @@
 	},
 	"ai": {
 		"binding": "AI"
+	},
+	"vars": {
+		"ALLOWED_ORIGIN": "https://wsoltani.com"
 	}
 	/**
 	 * Smart Placement

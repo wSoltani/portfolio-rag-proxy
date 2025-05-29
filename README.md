@@ -14,11 +14,14 @@ A Cloudflare Worker that serves as a proxy between the portfolio frontend and Cl
 
 1. Make sure you have created an AutoRAG instance named "portfolio-ai" in your Cloudflare dashboard.
 
-2. Update the wrangler.jsonc file to include the AI binding:
+2. Update the wrangler.jsonc file to include the AI binding and set your allowed origin:
    ```jsonc
    {
      "ai": {
        "binding": "AI"
+     },
+     "vars": {
+       "ALLOWED_ORIGIN": "https://your-domain.com"
      }
    }
    ```
@@ -108,7 +111,7 @@ const response = await fetch('https://portfolio-rag-proxy.your-account.workers.d
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    query: 'Tell me about Wassim's experience',
+    query: 'Tell me about your projects',
     stream: true
   }),
 });
